@@ -19,28 +19,30 @@ class ShoppingListViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         title = "Shopping List"
-        let barImage = UIImage(named: "white")
         navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationController?.navigationBar.shadowImage = UIImage()
+        let barImage = UIImage(named: "white")
         navigationController?.navigationBar.setBackgroundImage(barImage, for: .default)
+        navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.tintColor = .darkGray
         
         //  Left and Right bar button item setup.
         doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneEditing))
-        cartButton = UIBarButtonItem(image: UIImage(named: "cart"), style: .plain, target: self, action: #selector(newShoppingItem))
+        cartButton = UIBarButtonItem(image: UIImage(systemName: "cart.badge.plus"), style: .plain, target: self, action: #selector(newShoppingItem))
         
         navigationItem.rightBarButtonItems = [cartButton]
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(clearList))
+        let trashButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(clearList))
+        navigationItem.leftBarButtonItems = [trashButton]
         
         //  Bottom toolbar setup
         let flexibleSpacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let share = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
-        let addItem = UIBarButtonItem(image: UIImage(named: "cart"), style: .plain, target: self, action: #selector(newShoppingItem))
+        let addItem = UIBarButtonItem(image: UIImage(systemName: "cart.badge.plus"), style: .plain, target: self, action: #selector(newShoppingItem))
         
-        navigationController?.toolbar.setBackgroundImage(barImage, forToolbarPosition: .bottom, barMetrics: .default)
-        navigationController?.toolbar.shadowImage(forToolbarPosition: .bottom)
+        navigationController?.toolbar.setBackgroundImage(barImage, forToolbarPosition: .any, barMetrics: .default)
+        navigationController?.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
         navigationController?.toolbar.isTranslucent = true
+        navigationController?.toolbar.backgroundColor = .clear
         navigationController?.toolbar.tintColor = .darkGray
 
         toolbarItems = [flexibleSpacer, share, flexibleSpacer, addItem]
@@ -149,7 +151,7 @@ class ShoppingListViewController: UITableViewController, UITextFieldDelegate {
         if sender.state == .began {
             UIView.animate(withDuration: 0.3) {
                 self.tableView.isEditing = true
-                self.navigationItem.rightBarButtonItems = [self.doneButton, self.cartButton]
+                self.navigationItem.rightBarButtonItems = [self.cartButton, self.doneButton]
             }
         }
     }
@@ -200,7 +202,7 @@ extension ShoppingListViewController {
         cell.textLabel?.text = shoppingList[indexPath.row]
         
         //  Set the background colour of the cell to white but with alpha of 0.6 so that some of the background colour of the tableView bleeds through giving a paler look compared to unused cells.
-        cell.contentView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.6)
+//        cell.contentView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.6)
         
         return cell
     }
@@ -213,7 +215,7 @@ extension ShoppingListViewController {
         }
         
         deleteAction.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-        deleteAction.image = #imageLiteral(resourceName: "trash")
+        deleteAction.image = UIImage(systemName: "trash")
         
         let config = UISwipeActionsConfiguration(actions: [deleteAction])
         config.performsFirstActionWithFullSwipe = false

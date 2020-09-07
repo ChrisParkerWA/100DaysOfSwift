@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarController.viewControllers?.append(vc)
         }
         
-        
         return true
     }
 

@@ -24,16 +24,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         
         let addImage = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(selectImage))
-        let shareMeme = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        let shareMemeButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
         let delete = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteImage))
         
         navigationItem.leftBarButtonItem = delete
         navigationItem.rightBarButtonItems = [addImage]
         
-        let topCaption = UIBarButtonItem(title: "Top Caption", style: .plain, target: self, action: #selector(addTopCaption))
-        let bottomCaption = UIBarButtonItem(title: "Bottom Caption", style: .plain, target: self, action: #selector(addBottomCaption))
+        let captionsButton = UIBarButtonItem(title: "Add Captions", style: .plain, target: self, action: #selector(addCaptions))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        toolbarItems = [topCaption, space, bottomCaption, space, shareMeme]
+        toolbarItems = [captionsButton, space, shareMemeButton]
         navigationController?.isToolbarHidden = false
         self.view.backgroundColor = UIColor(displayP3Red:0.878, green: 0.992, blue: 0.722, alpha: 1.0)
         
@@ -94,32 +93,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(ac, animated: true)
     }
     
-    @objc func addTopCaption() {
-        let ac = UIAlertController(title: "Top Caption", message: nil, preferredStyle: .alert)
-        ac.addTextField { (textField) in
-            textField.placeholder = "Enter Caption"
-            textField.autocapitalizationType = .allCharacters
-            textField.font = UIFont.systemFont(ofSize: 14)
+    @objc func addCaptions() {
+        var topCaption: UITextField?
+        var bottomCaption: UITextField?
+        
+        let ac = UIAlertController(title: "Captions", message: "Add Top and Bottom (optional) Captions", preferredStyle: .alert)
+        ac.addTextField { (topTextField) in
+            topCaption = topTextField
+            topCaption?.placeholder = "Enter Top Caption"
+            topCaption?.autocapitalizationType = .allCharacters
+            topCaption?.font = UIFont.systemFont(ofSize: 14)
         }
-        ac.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak ac, weak self] _ in
-            guard let text = ac?.textFields?[0].text else { return }
-            self?.memeTopText = text
-            self?.updateImage()
-        }))
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        present(ac, animated: true)
-    }
-    
-    @objc func addBottomCaption() {
-        let ac = UIAlertController(title: "Bottom Caption", message: nil, preferredStyle: .alert)
-        ac.addTextField { (textField) in
-            textField.placeholder = "Enter Caption"
-            textField.autocapitalizationType = .allCharacters
-            textField.font = UIFont.systemFont(ofSize: 14)
+        ac.addTextField { (bottomTextField) in
+            bottomCaption = bottomTextField
+            bottomCaption?.placeholder = "Enter Bottom Caption"
+            bottomCaption?.autocapitalizationType = .allCharacters
+            bottomCaption?.font = UIFont.systemFont(ofSize: 14)
         }
-        ac.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak ac, weak self] _ in
-            guard let text = ac?.textFields?[0].text else { return }
-            self?.memeBottomText = text
+        ac.addAction(UIAlertAction(title: "Save", style: .default, handler: { [ weak self ] _ in
+            guard topCaption?.text != "" else { return }
+            self?.memeTopText = topCaption!.text
+            self?.memeBottomText = bottomCaption!.text ?? "Nil"
             self?.updateImage()
         }))
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))

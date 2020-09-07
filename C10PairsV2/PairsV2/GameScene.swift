@@ -35,7 +35,7 @@ class GameScene: SKScene {
     
     var cardAppearDelay = 0.0
     
-    var gameFont = "Marker Felt"
+    let gameFont = "Marker Felt"
     var player1ScoreLabel: SKLabelNode!
     var player2ScoreLabel: SKLabelNode!
     var currentPlayerLabel: SKLabelNode!

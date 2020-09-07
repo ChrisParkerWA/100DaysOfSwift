@@ -33,7 +33,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createBuildings()
         createSnow()
         createPlayers()
-        
 
         physicsWorld.contactDelegate = self
     }
@@ -187,8 +186,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.removeFromParent()
         banana?.removeFromParent()
         
-        presentNewScene()        
-        
+        presentNewScene()
     }
     
     func changePlayer() {
@@ -228,8 +226,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let explosion = SKEmitterNode(fileNamed: "hitBuilding") {
             explosion.position = contactPoint
             addChild(explosion)
-        }
-        
+        }        
         
         banana.name = ""
         banana?.removeFromParent()

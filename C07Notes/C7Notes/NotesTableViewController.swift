@@ -94,9 +94,11 @@ class NotesTableViewController: UITableViewController {
         //  Only the first line or first 30 characters of the note text
         cell.textLabel!.text = note.title()
         cell.textLabel!.font = UIFont(name: "Helvetica Neue", size: 16)
+        cell.textLabel?.textColor = .black
         //  The date is to prefix the field and the next line or next 40 characters to be appended
         cell.detailTextLabel!.text = note.dateString() + " - " + note.subTitle()
         cell.detailTextLabel!.font = UIFont(name: "Helvetica Neue", size: 14)
+        cell.detailTextLabel?.textColor = .black
         
         cell.detailTextLabel?.alpha = 0.5
         cell.backgroundColor = UIColor.clear
@@ -147,6 +149,7 @@ class NotesTableViewController: UITableViewController {
     }
     
     @objc func composeNote() {
+        print("Compose note selected")
         if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailViewController {
             vc.selectedNote = nil
             vc.notes = notes

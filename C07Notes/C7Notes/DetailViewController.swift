@@ -32,8 +32,16 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(done))
         
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        let convertButton = UIBarButtonItem(title: "CV>EF", style: .plain, target: self, action: #selector(convertText))
+        
+        toolbarItems = [shareButton, spacer, convertButton]
+        navigationController?.isToolbarHidden = false
+        
         noteTextView.delegate = self
         noteTextView.font = UIFont(name: "Helvetica Neue", size: 18)
+        noteTextView.textColor = .black
         
         if selectedNote == nil {
             noteTextView.text = ""
@@ -103,5 +111,53 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         vc.notes = notes
     
     }
-
+    
+    @objc func convertText() {
+        var letterNFound = false
+        let vowels = "aeiou"
+        var convertedArray: [String] = []
+        let textArray = Array(noteTextView.text)
+        for letter in textArray {
+            if letterNFound &&  vowels.contains(letter) {
+                convertedArray.append("y")
+            }
+            letterNFound = false
+            switch letter {
+            case "R":
+                convertedArray.append("W")
+            case "r":
+                convertedArray.append("w")
+            case "L":
+                convertedArray.append("W")
+            case "l":
+                convertedArray.append("w")
+            case "N":
+                letterNFound = true
+                convertedArray.append(String(letter))
+            case "n":
+                letterNFound = true
+                convertedArray.append(String(letter))
+            default:
+                convertedArray.append(String(letter))
+            }
+        }
+        noteTextView.text = convertedArray.joined(separator: "")
+    }
+    
+    @objc func shareTapped() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let now = Date()
+        let dateString = formatter.string(from: now)
+        
+        var list = "Elmer Fudd converted text: \(dateString)\n\n"
+        if noteTextView.text != "" {
+            list += noteTextView.text
+        }
+        let vc = UIActivityViewController(activityItems: [list], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
+        
+    }
+    
 }

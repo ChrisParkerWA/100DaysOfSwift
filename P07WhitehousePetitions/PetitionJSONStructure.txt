@@ -1,0 +1,74 @@
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
+//
+//   let petition = try? newJSONDecoder().decode(Petition.self, from: jsonData)
+
+import Foundation
+
+// MARK: - Petition
+struct Petition {
+    let metadata: Metadata
+    let results: [Result]
+}
+
+// MARK: - Metadata
+struct Metadata {
+    let responseInfo: ResponseInfo
+    let requestInfo: RequestInfo
+    let resultset: Resultset
+}
+
+// MARK: - RequestInfo
+struct RequestInfo {
+    let apiVersion: Int
+    let resource: String
+    let query: Query
+}
+
+// MARK: - Query
+struct Query {
+    let body, createdAfter, createdAt, createdBefore: NSNull
+    let isPublic: Int
+    let isSignable: NSNull
+    let limit: String
+    let mock, offset: Int
+    let petitionsDefaultLimit: String
+    let publicThreshold: Int
+    let responseID, signatureCount, signatureCountCeiling: NSNull
+    let signatureCountFloor: Int
+    let signatureThreshold, signatureThresholdCeiling, signatureThresholdFloor: NSNull
+    let sortBy, sortOrder: String
+    let status, title, url: NSNull
+    let websiteURL: String
+}
+
+// MARK: - ResponseInfo
+struct ResponseInfo {
+    let status: Int
+    let developerMessage, userMessage, errorCode, moreInfo: String
+}
+
+// MARK: - Resultset
+struct Resultset {
+    let count, limit, offset: Int
+}
+
+// MARK: - Result
+struct Result {
+    let id, type, title, body: String
+    let petitionType, issues: [Issue]
+    let signatureThreshold, signatureCount, signaturesNeeded: Int
+    let url: String
+    let deadline: Int
+    let status: String
+    let response: [Any?]
+    let created: Int
+    let isSignable, isPublic: Bool
+    let reachedPublic: Int
+}
+
+// MARK: - Issue
+struct Issue {
+    let id: Int
+    let name: String
+}

@@ -14,6 +14,7 @@
 		DB3D30232261E7C90017E42F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3D30212261E7C90017E42F /* LaunchScreen.storyboard */; };
 		DB3D302B2261E9260017E42F /* Capital.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3D302A2261E9260017E42F /* Capital.swift */; };
 		DBB1E3D9226234490019A4DC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB1E3D8226234490019A4DC /* DetailViewController.swift */; };
+		DBE2FBBC246848DA00AED4F4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBE2FBBB246848DA00AED4F4 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		DB3D30242261E7C90017E42F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB3D302A2261E9260017E42F /* Capital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capital.swift; sourceTree = "<group>"; };
 		DBB1E3D8226234490019A4DC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		DBE2FBBB246848DA00AED4F4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBE2FBBC246848DA00AED4F4 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +47,7 @@
 			children = (
 				DB3D30172261E7C90017E42F /* P16CapCities */,
 				DB3D30162261E7C90017E42F /* Products */,
+				DBE2FBBA246848DA00AED4F4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +72,14 @@
 				DB3D30242261E7C90017E42F /* Info.plist */,
 			);
 			path = P16CapCities;
+			sourceTree = "<group>";
+		};
+		DBE2FBBA246848DA00AED4F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DBE2FBBB246848DA00AED4F4 /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

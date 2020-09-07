@@ -12,6 +12,7 @@ class CountryViewController: UITableViewController {
     
     var countries = [Country]()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

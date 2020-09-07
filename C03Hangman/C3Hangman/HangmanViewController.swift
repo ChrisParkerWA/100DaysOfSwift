@@ -30,8 +30,7 @@ class HangmanViewController: UIViewController {
     var usedLetters = [String]()
     var selectedLetter: Character?
     var activatedButtons = [UIButton]() //  Stores buttons that have been pressed.
-//    let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    let alphabet = "1234567890QWERTYUIOPASDFGHJKL'ZXCVBNM,.:"
+    let characterSet = "1234567890QWERTYUIOPASDFGHJKL'ZXCVBNM,.:"
     var wrongAnswers = 0 {
         didSet {
             manImageView.image = UIImage(named: "man\(wrongAnswers)")
@@ -50,44 +49,47 @@ class HangmanViewController: UIViewController {
         view = UIView()
         view.backgroundColor = .white
         
-        manImageView = UIImageView()
-        manImageView.translatesAutoresizingMaskIntoConstraints = false
-        manImageView.image = UIImage(named: "man7")
-        manImageView.contentMode = UIView.ContentMode.scaleToFill
-        view.addSubview(manImageView)
-        
         gallowsImageView = UIImageView()
         gallowsImageView.translatesAutoresizingMaskIntoConstraints = false
         gallowsImageView.image = UIImage(named: "gallows")
         gallowsImageView.contentMode = UIView.ContentMode.scaleToFill
         gallowsImageView.layer.borderColor = UIColor.lightGray.cgColor
         gallowsImageView.layer.borderWidth = 1
-        gallowsImageView.backgroundColor = nil
+        gallowsImageView.backgroundColor = .white
         view.addSubview(gallowsImageView)
+        
+        manImageView = UIImageView()
+        manImageView.translatesAutoresizingMaskIntoConstraints = false
+        manImageView.image = UIImage(named: "man7")
+        manImageView.contentMode = UIView.ContentMode.scaleToFill
+        view.addSubview(manImageView)
         
         usedLettersLabel = UILabel()
         usedLettersLabel.translatesAutoresizingMaskIntoConstraints = false
         usedLettersLabel.textAlignment = .center
         usedLettersLabel.font = UIFont.systemFont(ofSize: 17)
+        usedLettersLabel.textColor = UIColor.black
         view.addSubview(usedLettersLabel)
-        
         
         clueLabel = UILabel()
         clueLabel.translatesAutoresizingMaskIntoConstraints = false
         clueLabel.textAlignment = .center
         clueLabel.font = UIFont.systemFont(ofSize: 17)
+        clueLabel.textColor = UIColor.black
         view.addSubview(clueLabel)
         
         guessesLabel = UILabel()
         guessesLabel.translatesAutoresizingMaskIntoConstraints = false
         guessesLabel.textAlignment = .center
         guessesLabel.font = UIFont.systemFont(ofSize: 17)
+        guessesLabel.textColor = UIColor.black
         view.addSubview(guessesLabel)
         
         answerLabel = UILabel()
         answerLabel.translatesAutoresizingMaskIntoConstraints = false
         answerLabel.textAlignment = .center
         answerLabel.font = UIFont.systemFont(ofSize: 20)
+        answerLabel.textColor = UIColor.black
         answerLabel.text = "_ _ _ _ _ _ _"
         answerLabel.isUserInteractionEnabled = false
         view.addSubview(answerLabel)
@@ -152,7 +154,7 @@ class HangmanViewController: UIViewController {
         var row = 0
         var col = 0
      
-        for letter in alphabet {
+        for letter in characterSet {
             var frame = CGRect()
             // create a new button and give it a big font size
             let letterButton = UIButton(type: .system)
@@ -181,7 +183,7 @@ class HangmanViewController: UIViewController {
             // and also to our letterButtons array
             letterButtons.append(letterButton)
             
-            //  7 columns wide by 4 rows deep.
+            //  7 columns wide by 4 rows high.
             if col < 9 {
                 col += 1
             } else {
@@ -193,11 +195,12 @@ class HangmanViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let playButton = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(playTapped(_:)))
         let fileButton = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectFile))
         navigationItem.leftBarButtonItems = [playButton, fileButton]
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(customGameTapped(_:)))
+        navigationController?.navigationBar.tintColor = .green
         
         loadWords()
         selectWord()
@@ -248,7 +251,7 @@ class HangmanViewController: UIViewController {
         var answerString = ""
         let tempWord = Array(selectedWord!)
         
-        for index in 0...selectedWord!.count - 1 {
+        for index in 0..<selectedWord!.count {
             if tempWord[index] == " " {
                 answerString += " "
             } else {
@@ -257,9 +260,6 @@ class HangmanViewController: UIViewController {
         }
 
         answerLabel.text = answerString
-//        print(selectedWord!)
-//        print("'\(answerString)'")
-        
         setButtonStatus(true)
     }
     
@@ -276,7 +276,9 @@ class HangmanViewController: UIViewController {
         ac.addAction(UIAlertAction(title: "Random Words", style: .default, handler: chooseFile))
         ac.addAction(UIAlertAction(title: "Movie Titles", style: .default, handler: chooseFile))
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
+        let view1 = UIView()
+        ac.popoverPresentationController?.sourceView = view1
+        ac.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0, width: view1.bounds.width, height: view1.bounds.height )
         present(ac, animated: true)
     }
     
@@ -301,7 +303,7 @@ class HangmanViewController: UIViewController {
         }
         let ac = UIAlertController(title: "Enter word (or a phrase) of 3 or more characters.  Maximum number of 31 characers including spaces.", message: nil, preferredStyle: .alert)
         ac.addTextField { (textField) in
-            textField.autocorrectionType = .default
+            textField.autocorrectionType = .no
         }
         
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
@@ -348,7 +350,7 @@ class HangmanViewController: UIViewController {
     
     func updateAnswerMask() {
         var answerArray = Array(answerLabel.text!)
-        var selectedWordArray = Array(selectedWord!)
+        let selectedWordArray = Array(selectedWord!)
         for index in 0..<selectedWordArray.count {
             if selectedWordArray[index] == selectedLetter {
                 answerArray[index] = selectedLetter!
@@ -368,8 +370,7 @@ class HangmanViewController: UIViewController {
             
         } else if guessesRemaining == 0 {
             animateVictim()
-            showAlert("Game Over", message: "You have \(guessesRemaining) guesses remaining.\nThe word or phrase was\n'\(selectedWord!)'\nPress the ▶︎ button to play again or click compose to choose your own word or phrase.", buttonText: "OK")
-            print(selectedWord!)
+            showAlert("Game Over", message: "You have \(guessesRemaining) guesses remaining.\nThe word or phrase was\n'\(selectedWord!)'\nPress the ▶︎ button to play again or click the compose icon 📝 to choose your own word or phrase.", buttonText: "OK")
             setButtonStatus(false)            
         }
         
@@ -379,7 +380,7 @@ class HangmanViewController: UIViewController {
         let degrees = Double(30)
         let radians = CGFloat(degrees * Double.pi / 180)
         
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
             self.manImageView.transform = CGAffineTransform(rotationAngle: radians)
         })
         UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseIn, animations: {
@@ -412,7 +413,7 @@ class HangmanViewController: UIViewController {
         UIView.animate(withDuration: 0.5, delay: 5, options: .curveEaseOut, animations: {
             self.manImageView.transform = CGAffineTransform(rotationAngle: -radians)
         })
-        UIView.animate(withDuration: 0.5, delay: 5.5, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 1, delay: 5.5, options: .curveEaseOut, animations: {
             self.manImageView.transform = CGAffineTransform(rotationAngle: 0)
         })
         

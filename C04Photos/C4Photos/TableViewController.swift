@@ -107,13 +107,13 @@ class TableViewController: UITableViewController, UIImagePickerControllerDelegat
     func photosSelected() {
         picker.sourceType = .photoLibrary
         //        picker.allowsEditing = true   //  Allows an edited image to be selected (cropped)
-        //        picker.allowsEditing = true
+                picker.allowsEditing = true
         present(picker, animated: true)
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     
-        guard let image = info[.originalImage] as? UIImage else { return }
+        guard let image = info[.editedImage] as? UIImage else { return }
         //  Change .originalImage to .editedImage depending on your taste.
         
         let imageName = UUID().uuidString

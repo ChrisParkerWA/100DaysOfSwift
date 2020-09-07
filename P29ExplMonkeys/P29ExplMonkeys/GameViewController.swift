@@ -102,8 +102,7 @@ class GameViewController: UIViewController {
             windLabel.text = "WIND: Speed: \(abs(kph))kph Direction: Left to Right"
         default:
             windLabel.text = "WIND: Calm"
-        }
-    
+        }    
     }
     
     @IBAction func launch(_ sender: Any) {

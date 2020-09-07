@@ -35,13 +35,18 @@ class ImageViewController: UIViewController {
 		imageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 
 		// schedule an animation that does something vaguely interesting
-		animTimer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) { timer in
+        animTimer = Timer.scheduledTimer(withTimeInterval: 3.2, repeats: true) { timer in
 			// do something exciting with our image
-			self.imageView.transform = CGAffineTransform.identity
 
-			UIView.animate(withDuration: 1.5) {
-				self.imageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-			}
+            UIView.animate(withDuration: 1.5) {
+                self.imageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
+                UIView.animate(withDuration: 1.5) {
+                    self.imageView.transform = CGAffineTransform.identity
+                }
+            }
+            
 		}
 	}
 

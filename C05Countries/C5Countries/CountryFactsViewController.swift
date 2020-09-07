@@ -88,8 +88,8 @@ class CountryFactsViewController: UIViewController, UITableViewDelegate, UITable
         let area = numberFormatter.string(from: NSNumber(value: country.area ?? 0))
         let population = numberFormatter.string(from: NSNumber(value: country.population))
         cell.countryLabel.text = country.name
-        cell.capitalLabel.text = country.capital
-        cell.regionLabel.text = country.region
+        cell.capitalLabel.text = country.capital == "" ? "Unspecified" : country.capital
+        cell.regionLabel.text = country.region == "" ? "Unspecified" : country.region
         cell.populationLabel.text = "\(population!)"
         cell.areaLabel.text = "\(area!) Sq Km"
         cell.subRegionLabel.text = country.subregion

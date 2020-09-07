@@ -28,34 +28,44 @@ class ViewController: UITableViewController {
         
         //  Setup for animating the logo prior to the tableview appearing.
         tableView.alpha = 0
+        
 //        let degrees = Double(360)
 //        let radians = CGFloat(degrees * Double.pi / 180)
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseIn, animations: {
             self.tableView.alpha = 1
         })
         
-        let barImage = UIImage(named: "white")
-//        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.setBackgroundImage(barImage, for: .default)
-        
-        navigationController?.toolbar.isTranslucent = true
-        navigationController?.toolbar.setBackgroundImage(barImage, forToolbarPosition: .bottom, barMetrics: .default)
         
         //  MARK: Question 3 of the challenge.  Add nav button item to start the game at any time.
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(startGame))
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
+        let startButton = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(startGame))
+        let share = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        let promptButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
+        navigationItem.leftBarButtonItems = [startButton]
+        navigationItem.rightBarButtonItems = [share]
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let share = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
         let sortAscending = UIBarButtonItem(image: UIImage(named: "sortAscending"), style: .done, target: self, action: #selector(sortListAscending))
         let sortDescending = UIBarButtonItem(image: UIImage(named: "sortDescending"), style: .done, target: self, action: #selector(sortListDescending))
         let random = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(randomizeLetters))
         let custom = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(customGame))
         
-        toolbarItems = [sortDescending, spacer, sortAscending, spacer, random, spacer, custom, spacer, share]
+        toolbarItems = [custom, spacer, sortDescending, spacer, sortAscending, spacer, random, spacer, promptButton]
         navigationController?.isToolbarHidden = false
+        
+        let barImage = UIImage(named: "white")
+        
+        // TOP
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.setBackgroundImage(barImage, for: .default)
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.tintColor = .black
+        
+        // BOTTOM
+        navigationController?.toolbar.tintColor = .black
+        navigationController?.toolbar.setBackgroundImage(barImage, forToolbarPosition: .any, barMetrics: .default)
+        navigationController?.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        navigationController?.toolbar.isTranslucent = true
+        navigationController?.toolbar.backgroundColor = .clear
         
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             if let startWords = try? String(contentsOf: startWordsURL) {
@@ -239,7 +249,7 @@ class ViewController: UITableViewController {
     }
     
     func isReal(word: String) -> Bool {
-        //  MARK: Question 1 of the challenge - respond if the answer is shorter than 3 letters OR if tha answer is the same as the selected word.
+        //  MARK: Question 1 of the challenge - respond if the answer is shorter than 3 letters OR if the answer is the same as the selected word.
         if word.utf16.count < 3 {
             showErrorMessage(withTitle: "Word is too short!", andMessage: "Your word must be 3 letters or longer.")
             return false
@@ -261,7 +271,8 @@ class ViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-    //  MARK: TabBarOptions
+    
+    //  MARK: - Navigation Bar Options
     @objc func sortListAscending() {
         usedWords = usedWords.sorted()
         isSortedAscending = true

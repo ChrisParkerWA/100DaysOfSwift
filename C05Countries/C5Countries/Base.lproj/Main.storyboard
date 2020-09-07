@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m5j-rI-1f8">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m5j-rI-1f8">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,10 +18,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Country" id="3zS-dZ-4Wt">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3zS-dZ-4Wt" id="TKj-oE-WJV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -58,7 +56,7 @@
                                 <rect key="frame" x="16" y="413" width="343" height="365"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="1Cb-5L-ZCZ"/>
+                                    <constraint firstAttribute="width" priority="999" constant="343" id="1Cb-5L-ZCZ"/>
                                     <constraint firstAttribute="height" constant="365" id="XZm-v2-oLS"/>
                                 </constraints>
                                 <prototypes>
@@ -66,11 +64,11 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="337"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o4N-yl-Hbd" id="vrI-dF-ChD">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="336.66666666666669"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="337"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7cj-6G-VPK">
-                                                    <rect key="frame" x="15" y="10" width="114.66666666666669" height="218.66666666666666"/>
+                                                    <rect key="frame" x="15.000000000000007" y="10" width="114.66666666666669" height="218.66666666666666"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edB-Pa-S5n">
                                                             <rect key="frame" x="0.0" y="0.0" width="66" height="20.333333333333332"/>
@@ -210,11 +208,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="FLm-Yj-KML" firstAttribute="leading" secondItem="Erj-38-FhU" secondAttribute="leading" constant="16" id="BIb-zd-Vzo"/>
+                            <constraint firstItem="FLm-Yj-KML" firstAttribute="leading" secondItem="Erj-38-FhU" secondAttribute="leading" priority="999" constant="16" id="BIb-zd-Vzo"/>
                             <constraint firstItem="t6f-F4-dnT" firstAttribute="centerX" secondItem="NES-9U-vD4" secondAttribute="centerX" id="FwH-4z-PjG"/>
                             <constraint firstItem="FLm-Yj-KML" firstAttribute="centerX" secondItem="NES-9U-vD4" secondAttribute="centerX" id="ShZ-5f-EMI"/>
                             <constraint firstItem="Erj-38-FhU" firstAttribute="trailing" secondItem="Ka0-w9-juV" secondAttribute="trailing" constant="16" id="V9O-5F-bRN"/>
-                            <constraint firstItem="Erj-38-FhU" firstAttribute="trailing" secondItem="FLm-Yj-KML" secondAttribute="trailing" constant="16" id="YQh-8u-Ih6"/>
+                            <constraint firstItem="Erj-38-FhU" firstAttribute="trailing" secondItem="FLm-Yj-KML" secondAttribute="trailing" priority="999" constant="16" id="YQh-8u-Ih6"/>
                             <constraint firstItem="t6f-F4-dnT" firstAttribute="top" secondItem="FLm-Yj-KML" secondAttribute="bottom" constant="8" id="kpk-JB-vq8"/>
                             <constraint firstItem="FLm-Yj-KML" firstAttribute="top" secondItem="Erj-38-FhU" secondAttribute="top" constant="10" id="y9u-64-dih"/>
                             <constraint firstItem="Ka0-w9-juV" firstAttribute="top" secondItem="t6f-F4-dnT" secondAttribute="bottom" constant="8" id="ybX-QZ-opg"/>

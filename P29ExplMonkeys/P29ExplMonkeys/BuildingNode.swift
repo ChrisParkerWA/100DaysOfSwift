@@ -78,6 +78,7 @@ class BuildingNode: SKSpriteNode {
         let convertedPoint = CGPoint(x: point.x + size.width / 2.0, y: abs(point.y - (size.height / 2.0)))
         
         let renderer = UIGraphicsImageRenderer(size: size)
+        
         let img = renderer.image { ctx in
             currentImage.draw(at: CGPoint(x: 0, y: 0))
             
@@ -87,7 +88,8 @@ class BuildingNode: SKSpriteNode {
         }
         
         texture = SKTexture(image: img)
-        currentImage = img        
-        configurePhysics()
+        
+        currentImage = img
+        configurePhysics()        
     }
 }

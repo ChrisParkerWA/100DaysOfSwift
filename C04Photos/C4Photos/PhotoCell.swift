@@ -12,6 +12,4 @@ class PhotoCell: UITableViewCell {
 
     @IBOutlet var photograph: UIImageView!
     @IBOutlet var caption: UILabel!
-    
-
 }

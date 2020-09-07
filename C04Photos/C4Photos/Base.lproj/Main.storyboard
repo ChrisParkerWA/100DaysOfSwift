@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iUB-lW-M2F">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iUB-lW-M2F">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qxd-EO-l9t" id="Arg-ca-yze">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="139.66666666666666"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t6P-Qq-TC3">
@@ -34,7 +32,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enough height to fit two lines or more of text. how much wood could a woodchuck chuck if a woodchuck could chuck" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJi-FK-cwZ">
-                                            <rect key="frame" x="140" y="10.000000000000007" width="225" height="119.66666666666669"/>
+                                            <rect key="frame" x="140" y="10" width="225" height="120"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -46,7 +44,6 @@
                                         <constraint firstItem="sJi-FK-cwZ" firstAttribute="top" secondItem="Arg-ca-yze" secondAttribute="top" constant="10" id="Qas-8n-F3Q"/>
                                         <constraint firstItem="t6P-Qq-TC3" firstAttribute="top" secondItem="Arg-ca-yze" secondAttribute="top" constant="10" id="b4A-LB-zFu"/>
                                         <constraint firstAttribute="bottom" secondItem="t6P-Qq-TC3" secondAttribute="bottom" priority="999" constant="10" id="cJg-PV-pHj"/>
-                                        <constraint firstItem="sJi-FK-cwZ" firstAttribute="leading" secondItem="t6P-Qq-TC3" secondAttribute="trailing" constant="10" id="kCg-cm-Vrs"/>
                                         <constraint firstAttribute="bottom" secondItem="sJi-FK-cwZ" secondAttribute="bottom" constant="10" id="kqV-bg-lcg"/>
                                         <constraint firstItem="t6P-Qq-TC3" firstAttribute="leading" secondItem="Arg-ca-yze" secondAttribute="leading" constant="10" id="tvW-8C-adW"/>
                                     </constraints>
