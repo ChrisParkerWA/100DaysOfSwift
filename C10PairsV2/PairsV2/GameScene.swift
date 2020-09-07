@@ -266,7 +266,7 @@ class GameScene: SKScene {
             self.playShuffleSound()
         }
         
-        for node in nodes(at: cardStackPosition)  {
+        for node in nodes(at: cardStackPosition) {
             
             slideCardIntoPosition(node: node, destination: CGPoint(x: xCord, y: yCord))
             xCord += xOffset
